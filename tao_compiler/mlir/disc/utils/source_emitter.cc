@@ -667,5 +667,18 @@ bool SourceEmitterCUDA::isBroadcastOnScalarOrSplatConstant(Operation* op) {
   return memref_type.getRank() == 0 || constant.getValue().isSplat();
 }
 
+std::string SourceEmitterCutlassEvt::EmitUniqueName(llvm::StringRef op_str) {
+  std::string name = "evt_" + op_str.str();
+  if (existing_names_.count(op_str.str()) == 0) {
+    existing_names_.try_emplace(op_str.str(), 0);
+  }
+  int32_t count = existing_names_[op_str.str()]++;
+  name += "_" + to_string(count);
+
+  return name;
+}
+
+bool SourceEmitterCutlassEvt
+
 }  // namespace disc_ral
 }  // namespace mlir

@@ -65,6 +65,50 @@ class SourceEmitterCUDA {
       lmhlo::ConstantOp constant);
 };
 
+/*
+class SourceEmitterCutlassEvt {
+ public:
+  using ValueNameBinding = llvm::DenseMap<Value, std::string>;
+
+ public:
+  static bool isBroadcastOnScalarOrSplatConstant(Operation* op);
+  static bool isSupportedOp(Operation* op);
+
+  std::optional<std::string> EmitOp(Operation* op, ValueNameBinding& binding);
+
+  std::optional<std::string> EmitElemWiseUnaryOp(Operation* op,
+                                                 ValueNameBinding& binding);
+
+  std::optional<std::string> EmitElemWiseBinaryOp(Operation* op,
+                                                  ValueNameBinding& binding);
+
+  std::optional<std::string> EmitElemWiseTernaryOp(Operation* op,
+                                                   ValueNameBinding& binding);
+
+  std::optional<std::string> EmitScalarOrSplatConstantOp(
+      Operation* op, ValueNameBinding& binding);
+
+  std::optional<std::string> EmitBroadcastOfScalarOrSplatConstantOp(
+      Operation* op, ValueNameBinding& binding);
+
+  std::optional<std::string> EmitDynamicReshapeOp(Operation* op,
+                                                  ValueNameBinding& binding);
+  std::optional<std::string> EmitTransposeOp(Operation* op,
+                                             ValueNameBinding& binding);
+
+  void bindValueNames(const SmallVectorImpl<Value>& inputs,
+                      const SmallVectorImpl<std::string>& names,
+                      ValueNameBinding& binding);
+
+ private:
+  std::unordered_map<std::string, int32_t> existing_names_;
+
+ private:
+  std::string EmitUniqueName(llvm::StringRef op_str);
+  std::optional<std::string> EmitScalarOrSplatConstantExpression(
+      lmhlo::ConstantOp constant);
+};
+*/
 }  // namespace disc_ral
 }  // namespace mlir
 

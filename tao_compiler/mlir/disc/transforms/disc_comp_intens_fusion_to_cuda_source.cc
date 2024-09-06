@@ -546,6 +546,37 @@ bool DiscCompIntensFusionToCUDASourcePass::
       }
     }
   }
+
+  // SourceEmitterCutlassEvt cutlass_evt_emitter;
+  // SourceEmitterCutlassEvt::ValueNameBinding binding_evt;
+  // for (auto& op : func.getRegion().getOps()) {
+  //   if (isa<lmhlo::DotGeneralOp>(&op)) {
+  //     // Convert default cuda datatype to CUTLASS datatype for computation.
+  //     Value dot_output = op.getOperand(2);
+  //     std::string old_name = "accum";
+  //     std::string new_name;
+  //     SmallVector<std::string> convert_instructions;
+  //     if (!mayConvertCUDATypeToCutlassType(dot_output, old_name, new_name,
+  //                                        convert_instructions)) {
+  //       return false;
+  //     }
+  //     cutlass_evt_emitter.bindValueNames(SmallVector<Value>({dot_output}),
+  //                                       SmallVector<std::string>({new_name}),
+  //                                       binding_evt);
+  //     for (auto& instruction : convert_instructions) {
+  //       appendLineToEpilogue(instruction);
+  //     }
+  //   } else if (!isa<func::ReturnOp>(&op)) {
+  //     assert(cutlass_evt_emitter.isSupportedOp(&op) &&
+  //            "Encounter unsupported op.");
+  //     auto instruction = cutlass_evt_emitter.EmitOp(&op, binding_evt);
+  //     if (!instruction.has_value()) {
+  //       return false;
+  //     } else {
+  //       appendLineToEpilogue(instruction.value());
+  //     }
+  // }
+
   // Append return instruction.
   SmallVector<Value> results;
   getResults(func, results);
